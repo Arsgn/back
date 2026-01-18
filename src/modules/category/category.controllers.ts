@@ -23,33 +23,34 @@ const getCategoryById = async (req: Request, res: Response) => {
 
 const postCategory = async (req: Request, res: Response) => {
   try {
-    const name = req.body.name?.trim();
+    const name = req.body?.name?.trim(); // коопсуз .trim()
 
     if (!name) {
+      // эгер бош же undefined болсо
       return res.status(400).json({
         success: false,
-        message: "Имя категории обязательно"
+        message: "Имя категории обязательно",
       });
     }
 
     const category = await prisma.category.create({
-      data: { name }
+      data: { name },
     });
 
     return res.status(201).json({
       success: true,
-      data: category
+      data: category,
     });
-  } catch (error) {
-    console.error("postCategory error:", error);
+  } catch (error: any) {
+    console.error("postCategory error:", error); // лог үчүн console
 
     return res.status(500).json({
       success: false,
-      message: "Ошибка сервера"
+      message: "Ошибка сервера",
+      error: error.message, // ката
     });
   }
 };
-
 
 export default {
   getCategories,

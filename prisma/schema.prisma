@@ -4,14 +4,17 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  // url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model Category {
-  id    Int    @id @default(autoincrement())
-  name  String  @unique
-  menus Menu[]
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  menus     Menu[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt @default(now())  // ✅ default коштук
 }
+
 
 model Menu {
   id          Int          @id @default(autoincrement())
