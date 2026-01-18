@@ -1,18 +1,19 @@
 import { Router } from "express";
 import cors from "cors";
 import aboutPrismaRoutes from "../modules/about/about.routes";
-import modernPrismaRoutes from "../modules/about/about.routes";
 import categoryPrismaRoutes from "../modules/about/about.routes";
+import aboutRoutes from "../modules/about/about.routes";
+import modernRoutes from "../modules/modern/modern.routes";
+import menuRoutes from "../modules/menu/menu.routes";
 
 const configCors = {
-	origin: [
-		"http://localhost:3000",
-	],
+  origin: ["http://localhost:3000"],
 };
 
 const router = Router();
-router.use("/about", cors(configCors), aboutPrismaRoutes);
-router.use("/modern", cors(configCors), modernPrismaRoutes);
 router.use("/category", cors(configCors), categoryPrismaRoutes);
+router.use("/about", cors(configCors), aboutRoutes);
+router.use("/modern", cors(configCors), modernRoutes);
+router.use("/menu", cors(configCors), menuRoutes);
 
 export default router;
