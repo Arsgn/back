@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import prisma from "../plugins/prisma";
+import prisma from "../../plugins/prisma";
 
 const getAbout = async (req: Request, res: Response) => {
   try {

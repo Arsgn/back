@@ -1,6 +1,8 @@
 import { Router } from "express";
 import cors from "cors";
-import todoPrismaRoutes from "../modules/todo-prisma/todo-prisma.routes";
+import aboutPrismaRoutes from "../modules/about/about.routes";
+import modernPrismaRoutes from "../modules/about/about.routes";
+import categoryPrismaRoutes from "../modules/about/about.routes";
 
 const configCors = {
 	origin: [
@@ -9,6 +11,8 @@ const configCors = {
 };
 
 const router = Router();
-router.use("/todo-prisma", cors(configCors), todoPrismaRoutes);
+router.use("/about", cors(configCors), aboutPrismaRoutes);
+router.use("/modern", cors(configCors), modernPrismaRoutes);
+router.use("/category", cors(configCors), categoryPrismaRoutes);
 
 export default router;
