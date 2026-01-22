@@ -8,10 +8,19 @@ datasource db {
 }
 
 model Category {
+<<<<<<< HEAD
   id    Int    @id @default(autoincrement())
   name  String
   menus Menu[]
+=======
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  menus     Menu[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt @default(now())  // ✅ default коштук
+>>>>>>> ea7d142529899e48cad193d969796b43984e8ec4
 }
+
 
 model Menu {
   id          Int          @id @default(autoincrement())
@@ -24,22 +33,29 @@ model Menu {
   updatedAt   DateTime     @updatedAt
   categoryId  Int
   category    Category     @relation(fields: [categoryId], references: [id])
+<<<<<<< HEAD
   extras      MenuOption[] @relation("MenuExtras")
+=======
+>>>>>>> ea7d142529899e48cad193d969796b43984e8ec4
   drinks      MenuOption[] @relation("MenuDrinks")
+  extras      MenuOption[] @relation("MenuExtras")
 }
 
 model MenuOption {
+<<<<<<< HEAD
   id          Int   @id @default(autoincrement())
+=======
+  id          Int    @id @default(autoincrement())
+  title       String
+  price       Float
+
+>>>>>>> ea7d142529899e48cad193d969796b43984e8ec4
   menuId      Int?
   drinkMenuId Int?
   menu        Menu? @relation("MenuExtras", fields: [menuId], references: [id])
   menuDrink   Menu? @relation("MenuDrinks", fields: [drinkMenuId], references: [id])
 }
 
-enum OptionType {
-  EXTRA
-  DRINK
-}
 
 model About {
   id          Int      @id @default(autoincrement())
@@ -56,3 +72,27 @@ model ModernInterior {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+enum OptionType {
+  EXTRA
+  DRINK
+}
+<<<<<<< HEAD
+
+model About {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ModernInterior {
+  id        Int      @id @default(autoincrement())
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+=======
+>>>>>>> ea7d142529899e48cad193d969796b43984e8ec4
