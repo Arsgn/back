@@ -1,42 +1,37 @@
 generator client {
-  provider      = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // url      = env("DATABASE_URL")
 }
 
 model Category {
-  id    Int     @id @default(autoincrement())
+  id    Int    @id @default(autoincrement())
   name  String
   menus Menu[]
 }
 
 model Menu {
-  id          Int       @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
   title       String
   description String
   price       Float
   image       String?
-  ingredients String?   
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
+  ingredients String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   categoryId  Int
-  category    Category   @relation(fields: [categoryId], references: [id])
-
+  category    Category     @relation(fields: [categoryId], references: [id])
   extras      MenuOption[] @relation("MenuExtras")
   drinks      MenuOption[] @relation("MenuDrinks")
 }
 
-
 model MenuOption {
-  id          Int    @id @default(autoincrement())
-
+  id          Int   @id @default(autoincrement())
   menuId      Int?
   drinkMenuId Int?
-
   menu        Menu? @relation("MenuExtras", fields: [menuId], references: [id])
   menuDrink   Menu? @relation("MenuDrinks", fields: [drinkMenuId], references: [id])
 }
@@ -45,18 +40,19 @@ enum OptionType {
   EXTRA
   DRINK
 }
+
 model About {
-  id          Int       @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   title       String
   description String
   image       String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model ModernInterior{
-  id          Int       @id @default(autoincrement())
-  image       String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+model ModernInterior {
+  id        Int      @id @default(autoincrement())
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
