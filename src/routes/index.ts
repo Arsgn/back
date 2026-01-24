@@ -6,7 +6,10 @@ import menuRoutes from "../modules/menu/menu.routes";
 import categoryRoutes from "../modules/category/category.routes";
 
 const configCors = {
-  origin: ["http://localhost:3000"],
+  origin: [
+    "http://localhost:3000",
+    "https://back-blce-3kaj7nz62-arsen01.vercel.app/",
+  ],
 };
 
 const router = Router();
@@ -14,6 +17,5 @@ router.use("/category", cors(configCors), categoryRoutes);
 router.use("/about", cors(configCors), aboutRoutes);
 router.use("/modern", cors(configCors), modernRoutes);
 router.use("/menu", cors(configCors), menuRoutes);
-
 
 export default router;
