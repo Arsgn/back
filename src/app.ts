@@ -1,21 +1,34 @@
 import { config } from "dotenv";
 config();
+
 import express from "express";
+import cors from "cors";
 import routes from "./routes";
 
 export const buildServer = () => {
-	const server = express();
+  const server = express();
 
-	// Middleware
-	server.use(express.json());
+  const configCors = {
+    origin: [
+      "http://localhost:3000",
+      "https://restaurant-mqgq.vercel.app",
+    ],
+    credentials: true,
+  };
 
-	server.get("/", (req, res) => {
-		res.status(200).send({
-			message: "Hello World!",
-		});
-	});
+  // 🔥 CORS глобально и один раз
+  server.use(cors(configCors));
 
-	server.use("/api/v1", routes);
+  // Middleware
+  server.use(express.json());
 
-	return server;
+  server.get("/", (req, res) => {
+    res.status(200).send({
+      message: "Hello World!",
+    });
+  });
+
+  server.use("/api/v1", routes);
+
+  return server;
 };
