@@ -15,4 +15,5 @@ router.use("/about", cors(configCors), aboutRoutes);
 router.use("/modern", cors(configCors), modernRoutes);
 router.use("/menu", cors(configCors), menuRoutes);
 
+
 export default router;

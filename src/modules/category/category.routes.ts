@@ -3,8 +3,8 @@ import categoryControllers from "./category.controllers";
 
 const categoryRoutes = Router();
 
-categoryRoutes.get("/", categoryControllers.getCategories);
-categoryRoutes.get("/:id", categoryControllers.getCategoryById);
-categoryRoutes.post("/post", categoryControllers.postCategory);
+categoryRoutes.get("/get-category", categoryControllers.getCategories);
+categoryRoutes.get("/category/:id", categoryControllers.getCategoryById);
+categoryRoutes.post("/post-category", categoryControllers.postCategory);
 
 export default categoryRoutes;
