@@ -8,7 +8,7 @@ import categoryRoutes from "../modules/category/category.routes";
 const configCors = {
   origin: [
     "http://localhost:3000",
-    "https://back-blce-3kaj7nz62-arsen01.vercel.app",
+    "https://restaurant-mqgq.vercel.app",
   ],
 };
 
