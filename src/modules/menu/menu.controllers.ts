@@ -221,6 +221,48 @@ const getMenu = async (req: Request, res: Response) => {
   }
 };
 
+const searchMenu = async (req: Request, res: Response) => {
+  const { search } = req.query;
+  console.log(search);
+
+  try {
+    let data;
+
+    if (search) {
+      data = await prisma.menu.findMany({
+        where: {
+          OR: [
+            {
+              title: {
+                contains: String(search),
+                mode: "insensitive",
+              },
+            },
+            {
+              description: {
+                contains: String(search),
+                mode: "insensitive",
+              },
+            },
+          ],
+        },
+      });
+    } else {
+      data = await prisma.menu.findMany();
+    }
+    res.status(200).send({
+      success: true,
+      data: data,
+    });
+  } catch (e) {
+    res.status(500).send({
+      success: false,
+      message: `error in searchTodo: ${e}`,
+    });
+  }
+};
+
+
 const postMenu = async (req: Request, res: Response) => {
   try {
     const {
@@ -314,6 +356,7 @@ const putMenu = async (req: Request, res: Response) => {
 
 export default {
   getMenu,
+  searchMenu,
   postMenu,
   deleteMenu,
   putMenu,

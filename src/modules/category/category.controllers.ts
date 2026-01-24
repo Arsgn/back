@@ -9,16 +9,29 @@ const getCategories = async (_req: Request, res: Response) => {
 const getCategoryById = async (req: Request, res: Response) => {
   const id = Number(req.params.id);
 
+  if (!id || isNaN(id)) {
+    return res.status(400).json({
+      success: false,
+      message: "Некорректный ID категории",
+    });
+  }
+
   const category = await prisma.category.findUnique({
     where: { id },
     include: { menus: true },
   });
 
   if (!category) {
-    return res.status(404).json({ message: "Категория не найдена" });
+    return res.status(404).json({
+      success: false,
+      message: "Категория не найдена",
+    });
   }
 
-  res.json(category);
+  res.json({
+    success: true,
+    data: category,
+  });
 };
 
 const postCategory = async (req: Request, res: Response) => {
