@@ -4,7 +4,7 @@ import express from "express";
 import routes from "./routes";
 
 export const buildServer = () => {
-  const server = express();
+	const server = express();
 
   // Middleware
   server.use(express.json());

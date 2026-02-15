@@ -19,7 +19,7 @@ model Menu {
   id          Int          @id @default(autoincrement())
   title       String
   description String
-  price       Float
+  price       Int
   image       String?
   ingredients String?
   createdAt   DateTime     @default(now())
@@ -31,9 +31,9 @@ model Menu {
 }
 
 model MenuOption {
-  id    Int    @id @default(autoincrement())
-  title String
-  price Float
+  id          Int    @id @default(autoincrement())
+  title       String
+  price       Float
 
   menuId      Int?
   drinkMenuId Int?

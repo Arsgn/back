@@ -5,7 +5,7 @@ const modernRoutes = Router();
 
 modernRoutes.get("/get", modernControllers.getModern);
 modernRoutes.post("/post", modernControllers.postModern);
-modernRoutes.delete("/delte/:id", modernControllers.deleteModern);
-modernRoutes.put("/get", modernControllers.putModern);
+modernRoutes.delete("/delete/:id", modernControllers.deleteModern);
+modernRoutes.put("/put/:id", modernControllers.putModern);
 
 export default modernRoutes;
